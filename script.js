@@ -67,6 +67,7 @@ const clickHandler = (e) => {
 
 buttons.forEach((button) => {
   button.addEventListener('click', clickHandler);
+  console.log(button);
 })
 
-console.log(buttons)
+console.log(buttons);

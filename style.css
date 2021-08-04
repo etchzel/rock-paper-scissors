@@ -1,5 +1,103 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: #36393E;
+  color: #ffffffbd;
+  font-family: 'Georama', sans-serif;
+  line-height: 1.6;
+}
+
 button {
-  margin: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  border-bottom: 4px solid #7289DA;
+}
+
+.title {
+  font-size: 40px;
+  color: #7289DA;
+}
+
+.main {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.scoreboard {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.round-result {
+  font-size: 30px;
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 400px;
+  padding: 10px;
+  margin: 0 auto;
+  font-size: 24px;
+}
+
+.score {
+  width: 150px;
+}
+
+.score p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.btn {
+  border: 2px solid #7289DA;
+  border-radius: 10px;
+  background-color: #393e46;
+  padding: 20px;
+}
+
+.btn:hover {
+  background-color: #4a4f57;
+}
+
+.fas {
+  font-size: 100px;
+  visibility: visible;
+  pointer-events: none;
+}
+
+@media (max-width: 550px) {
+  .title {
+    font-size: 30px;
+  }
+
+  .round-result {
+    font-size: 20px;
+  }
+
+  .fas {
+    font-size: 55px;
+  }
 }
