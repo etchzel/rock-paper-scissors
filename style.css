@@ -84,8 +84,15 @@ button {
 
 .fas {
   font-size: 100px;
-  visibility: visible;
   pointer-events: none;
+}
+
+.score .fas {
+  visibility: hidden;
+}
+
+.score .fas.active {
+  visibility: visible;
 }
 
 @media (max-width: 550px) {

@@ -21,6 +21,8 @@ const playRound = (playerSelection) => {
     roundWinner = 'computer';
   }
 
+  playerSign.classList = `fas fa-hand-${playerSelection} active`;
+  computerSign.classList = `fas fa-hand-${computerSelection} active`;
   return roundWinner;
 };
 
@@ -41,6 +43,8 @@ const buttons = Array.from(document.querySelectorAll('.btn'));
 const roundResult = document.querySelector('.round-result');
 const playerScoreDisplay = document.querySelector('.player-score');
 const computerScoreDisplay = document.querySelector('.computer-score');
+const playerSign = document.querySelector('#playerSign');
+const computerSign = document.querySelector('#computerSign');
 
 const updateScore = (roundWinner) => {
 
@@ -60,6 +64,7 @@ const updateScore = (roundWinner) => {
 
 const clickHandler = (e) => {
   const playerSelection = e.target.value.toLowerCase(); // change later
+  const computerSelection = computerPlay();
 
   const roundWinner = playRound(playerSelection);
   updateScore(roundWinner);
