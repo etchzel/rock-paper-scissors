@@ -1,26 +1,30 @@
-const MAX_ROUND = 5;
+// const MAX_ROUND = 5;
 const winCondition = {
   rock: 'scissors',
   paper: 'rock',
   scissors: 'paper'
-}
-const hand = ['rock', 'paper', 'scissors']
+};
 
-function playRound(playerSelection, computerSelection) {
-  let roundResult;
+let playerScore = 0;
+let computerScore = 0;
+
+const playRound = (playerSelection) => { 
+
+  const computerSelection = computerPlay();
+  let roundWinner = '';
 
   if (playerSelection === computerSelection) {
-    roundResult = "You Tie!";
+    roundWinner = 'tie';
   } else if (winCondition[playerSelection] === computerSelection) {
-    roundResult = `You Win! ${playerSelection} beats ${computerSelection}`;
+    roundWinner = 'player';
   } else {
-    roundResult = `You Lose! ${computerSelection} beats ${playerSelection}`;
+    roundWinner = 'computer';
   }
 
-  return roundResult;
-}
+  return roundWinner;
+};
 
-function computerPlay() {
+const computerPlay = () => {
   switch (Math.floor(Math.random() * 3)) {
     case 0:
       return 'rock';
@@ -31,31 +35,38 @@ function computerPlay() {
   }
 }
 
-function playerPlay() {
-  let selection = prompt('What hand are you gonna play?');
-  if (selection === null) {
-    alert('Input cancelled');
-    return null;
-  } else if (!hand.includes(selection.toLowerCase())) {
-    alert('Invalit input. Only Rock/Paper/Scissors');
-    return null;
-  } else {
-    return selection.toLowerCase();
-  }
-}
+// UI
 
-function game() {
-  let round = 0;
-  while (round < MAX_ROUND) {
-    const playerSelection = playerPlay();
-    if (playerSelection === null) {
-      console.log('Match stopped due to invalid input');
-      return 0;
-    }
-    const computerSelection = computerPlay();
-    console.log(playRound(playerSelection, computerSelection));
-    round++;
-  }
-}
+const buttons = Array.from(document.querySelectorAll('.btn'));
+const roundResult = document.querySelector('.round-result');
+const playerScoreDisplay = document.querySelector('.player-score');
+const computerScoreDisplay = document.querySelector('.computer-score');
 
-game();
+const updateScore = (roundWinner) => {
+
+  if (roundWinner === 'tie') {
+    roundResult.textContent = 'It\'s a Tie!';
+  } else if (roundWinner === 'player') {
+    roundResult.textContent = 'You Win!';
+    playerScore++;
+  } else if (roundWinner === 'computer') {
+    roundResult.textContent = 'You Lose!';
+    computerScore++;
+  }
+
+  playerScoreDisplay.textContent = `Player: ${playerScore}`;
+  computerScoreDisplay.textContent = `Computer: ${computerScore}`;
+};
+
+const clickHandler = (e) => {
+  const playerSelection = e.target.value.toLowerCase(); // change later
+
+  const roundWinner = playRound(playerSelection);
+  updateScore(roundWinner);
+};
+
+buttons.forEach((button) => {
+  button.addEventListener('click', clickHandler);
+})
+
+console.log(buttons)
