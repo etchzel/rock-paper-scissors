@@ -16,31 +16,51 @@
     <h1 class='title'>Rock Paper Scissors Game</h1>
   </header>
   <main class="main">
-    <div class="scoreboard">
-      <h2 class="round-result">Score</h2>
-      <div class="score-container">
-        <div class="score">
-          <p class="player-score">Player: 0</p>
-          <i class="fas fa-hand-rock" id="playerSign"></i>
-        </div>        
-        <div class="score">
-          <p class="computer-score">Computer: 0</p>
-          <i class="fas fa-hand-rock" id="computerSign"></i>
-        </div>
-      </div>
-    </div>
-    <div class="buttons">
-      <button class="btn" value="Rock">
-        <i class="fas fa-hand-rock"></i>
-      </button>
-      <button class="btn" value="Paper">
-        <i class="fas fa-hand-paper"></i>
-      </button>
-      <button class="btn" value="Scissors">
-        <i class="fas fa-hand-scissors"></i>
-      </button>
+    <div class="start-screen">
+      <h2 class="title">Play a Round of Rock Paper Scissors, First to 5</h2>
+      <button class="start">Play!</button>
     </div>
   </main>
+  <div class="modal-container">
+    <span class="close">&times;</span>
+    <div class="modal-contents">
+      <div class="modal">
+        <div class="scoreboard">
+          <h2 class="round-result"></h2>
+          <div class="score-container">
+            <div class="score">
+              <p class="player-score"></p>
+              <i class="fas fa-hand-rock" id="playerSign"></i>
+            </div>        
+            <div class="score">
+              <p class="computer-score"></p>
+              <i class="fas fa-hand-rock" id="computerSign"></i>
+            </div>
+          </div>
+        </div>
+        <div class="buttons">
+          <button class="btn" value="Rock">
+            <i class="fas fa-hand-rock"></i>
+          </button>
+          <button class="btn" value="Paper">
+            <i class="fas fa-hand-paper"></i>
+          </button>
+          <button class="btn" value="Scissors">
+            <i class="fas fa-hand-scissors"></i>
+          </button>
+        </div>
+      </div>
+      <div class="end-modal">
+        <p class="end-message">Match over! You win!</p>
+        <div class="score-container">
+          <p class="player-score"></p>     
+          <p class="computer-score"></p>
+        </div>
+        <p class="retry">Would you like to try again?</p>
+        <button class="btn-restart">Restart</button>
+      </div>
+    </div>
+  </div>
   <script src="script.js"></script> 
 </body>
 </html>

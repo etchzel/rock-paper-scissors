@@ -36,6 +36,63 @@ button {
   text-align: center;
 }
 
+.modal-container {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 550px;
+  border: 1px solid #7289DA;
+  border-radius: 10px;
+  background-color: #36393E;
+  text-align: center;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  font-size: 30px;
+}
+
+.modal-container.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 100%;
+  font-weight: bold;
+  margin-right: 10px;
+  height: 40px;
+  width: 30px;
+}
+
+.close:hover,
+.close:focus {
+  color: #4a4f57;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-contents {
+  padding: 30px;
+}
+
+.modal.active {
+  display: none;
+}
+
+.end-modal {
+  display: none;
+  position: relative;
+}
+
+.end-modal.active {
+  display: block;
+}
+
+.end-message {
+  font-weight: bold;
+}
+
 .scoreboard {
   padding: 10px;
   margin-bottom: 20px;
@@ -64,6 +121,11 @@ button {
   margin-bottom: 20px;
 }
 
+.end-modal > .score-container > p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 .buttons {
   display: flex;
   align-items: center;
@@ -71,14 +133,35 @@ button {
   gap: 30px;
 }
 
-.btn {
+.start {
+  border: 2px solid #7289DA;
+  border-radius: 10px;
+  background-color: #393e46;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  visibility: visible;
+}
+
+.start:hover {
+  background-color: #4a4f57;
+}
+
+.start.hidden {
+  visibility: hidden;
+}
+
+.btn,
+.btn-restart {
   border: 2px solid #7289DA;
   border-radius: 10px;
   background-color: #393e46;
   padding: 20px;
 }
 
-.btn:hover {
+.btn:hover,
+.btn-restart:hover {
   background-color: #4a4f57;
 }
 
@@ -95,16 +178,65 @@ button {
   visibility: visible;
 }
 
-@media (max-width: 550px) {
-  .title {
-    font-size: 30px;
-  }
 
+@media (max-width: 380.9px) {
   .round-result {
     font-size: 20px;
   }
 
+  .player-score {
+    font-size: 70%;
+  }
+
+  .computer-score {
+    font-size: 70%;
+  }
+
+  .end-message {
+    font-size: 70%;
+  }
+
+  .retry,
+  .btn-restart {
+    font-size: 70%;
+  }
+
   .fas {
-    font-size: 55px;
+    font-size: 100%;
+  }
+
+  .modal-container {
+    width: 90%;
+  }
+}
+
+@media (min-width: 381px) and (max-width: 600px) {
+  .round-result {
+    font-size: 30px;
+  }
+
+  .player-score {
+    font-size: 80%;
+  }
+
+  .computer-score {
+    font-size: 80%;
+  }
+
+  .fas {
+    font-size: 150%;
+  }
+
+  .end-message {
+    font-size: 80%;
+  }
+
+  .retry,
+  .btn-restart {
+    font-size: 80%;
+  }
+
+  .modal-container {
+    width: 70%;
   }
 }

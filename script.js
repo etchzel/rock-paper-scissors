@@ -19,7 +19,7 @@ const playRound = (playerSelection) => {
     roundWinner = 'player';
   } else {
     roundWinner = 'computer';
-  }
+  };
 
   playerSign.classList = `fas fa-hand-${playerSelection} active`;
   computerSign.classList = `fas fa-hand-${computerSelection} active`;
@@ -34,8 +34,8 @@ const computerPlay = () => {
       return 'paper';
     case 2:
       return 'scissors';
-  }
-}
+  };
+};
 
 // UI
 
@@ -45,6 +45,15 @@ const playerScoreDisplay = document.querySelector('.player-score');
 const computerScoreDisplay = document.querySelector('.computer-score');
 const playerSign = document.querySelector('#playerSign');
 const computerSign = document.querySelector('#computerSign');
+const startBtn = document.querySelector('.start');
+const gameScreen = document.querySelector('.modal-container');
+const gameScreenContent = document.querySelector('.modal');
+const closeBtn = document.querySelector('.close');
+const endMessage = document.querySelector('.end-message');
+const endScreen = document.querySelector('.end-modal');
+const endPlayerScore = document.querySelector('.end-modal > .score-container > .player-score');
+const endComputerScore = document.querySelector('.end-modal > .score-container > .computer-score')
+const restartBtn = document.querySelector('.btn-restart');
 
 const updateScore = (roundWinner) => {
 
@@ -56,23 +65,68 @@ const updateScore = (roundWinner) => {
   } else if (roundWinner === 'computer') {
     roundResult.textContent = 'You Lose!';
     computerScore++;
-  }
+  };
 
-  playerScoreDisplay.textContent = `Player: ${playerScore}`;
-  computerScoreDisplay.textContent = `Computer: ${computerScore}`;
+  if(matchOver()) {
+    endScreen.classList.add('active');
+    gameScreenContent.classList.add('active');
+    endPlayerScore.textContent = `Player: ${playerScore}`;
+    endComputerScore.textContent = `Computer: ${computerScore}`;
+  } else {
+    playerScoreDisplay.textContent = `Player: ${playerScore}`;
+    computerScoreDisplay.textContent = `Computer: ${computerScore}`;
+  };
 };
 
-const clickHandler = (e) => {
-  const playerSelection = e.target.value.toLowerCase(); // change later
-  const computerSelection = computerPlay();
+const matchOver = () => {
+  if (playerScore === 5) {
+    endMessage.textContent = 'Match over! You win!';
+    return true;
+  } else if (computerScore === 5) {
+    endMessage.textContent = 'Match over! You lose!';
+    return true;
+  };
+  return false;
+};
 
+const selectionClick = (e) => {
+  const playerSelection = e.target.value.toLowerCase();
+ 
   const roundWinner = playRound(playerSelection);
   updateScore(roundWinner);
 };
 
-buttons.forEach((button) => {
-  button.addEventListener('click', clickHandler);
-  console.log(button);
-})
+const closeClick = () => {
+  gameScreen.classList.remove('active');
+  startBtn.classList.remove('hidden');
+};
 
-console.log(buttons);
+const removeModal = () => {
+  playerSign.classList.remove('active');
+  computerSign.classList.remove('active');
+  endScreen.classList.remove('active');
+  gameScreenContent.classList.remove('active');
+};
+
+const restartGameState = () => {
+  playerScore = 0;
+  computerScore = 0;
+  playerScoreDisplay.textContent = `Player: ${playerScore}`;
+  computerScoreDisplay.textContent = `Computer: ${computerScore}`;
+  roundResult.textContent = 'Score';
+  removeModal();
+};
+
+const displayGame = () => {
+  restartGameState();
+  gameScreen.classList.add('active');
+  startBtn.classList.add('hidden');
+};
+
+buttons.forEach((button) => {
+  button.addEventListener('click', selectionClick);
+});
+
+startBtn.addEventListener('click', displayGame);
+closeBtn.addEventListener('click', closeClick);
+restartBtn.addEventListener('click', restartGameState);
